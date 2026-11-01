@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daycare Management System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<header><div class="wrap"><h1>Daycare Management System</h1><p>Children · Attendance · Daily Care · Staff · Payments</p></div></header>
+<div class="wrap"><nav aria-label="Sections">
+  <button data-tab="dashboard" class="active">Dashboard</button>
+  <button data-tab="children">Children</button>
+  <button data-tab="attendance">Attendance</button>
+  <button data-tab="daily">Daily Care</button>
+  <button data-tab="history">History</button>
+  <button data-tab="staff">Staff</button>
+  <button data-tab="payments">Payments</button>
+  <button data-tab="backup">Backup</button>
+</nav><p id="notice" role="status" aria-live="polite"></p>
+<section id="dashboard" class="panel active"><h2>Dashboard</h2><div class="cards">
+  <article>Total children <strong id="d-total">0</strong></article>
+  <article>Male <strong id="d-male">0</strong></article>
+  <article>Female <strong id="d-female">0</strong></article>
+  <article>Present today <strong id="d-present">0</strong></article>
+  <article>Absent today <strong id="d-absent">0</strong></article>
+  <article>Not marked <strong id="d-unmarked">0</strong></article>
+  <article>Staff <strong id="d-staff">0</strong></article>
+  <article>Payments total <strong id="d-payments">$0.00</strong></article>
+</div><p>Attendance is based on today's date.</p></section>
+<section id="children" class="panel"><h2>Children</h2>
+<form id="child-form"><input type="hidden" name="id"><div class="fields">
+  <label>First name *<input name="firstName" required maxlength="100"></label>
+  <label>Last name *<input name="lastName" required maxlength="100"></label>
+  <label>Date of birth<input name="dob" type="date"></label>
+  <label>Gender<select name="gender"><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+  <label>Group<input name="group" maxlength="100"></label>
+  <label>Parent name<input name="parentName" maxlength="100"></label>
+  <label>Phone<input name="phone" maxlength="50"></label>
+  <label>Email<input name="email" type="email" maxlength="150"></label>
+  <label>Allergies<input name="allergies" maxlength="250"></label>
+  <label>Notes<textarea name="notes" rows="2"></textarea></label>
+</div><button type="submit" id="child-save">Add Child</button><button type="button" class="secondary" id="child-cancel">Clear</button></form>
+<h3>Registered children</h3><input id="child-search" placeholder="Search children" aria-label="Search children"><div id="child-list"></div></section>
+<section id="attendance" class="panel"><h2>Attendance</h2><label>Date <input type="date" id="attendance-date"></label><div id="attendance-list"></div><button id="attendance-save">Save attendance</button></section>
+<section id="daily" class="panel"><h2>Daily Care</h2><form id="daily-form"><input type="hidden" name="id"><div class="fields">
+  <label>Child *<select name="childId" class="child-options" required></select></label>
+  <label>Date *<input type="date" name="date" required></label>
+  <label>Meals<input name="meals"></label>
+  <label>Nap<input name="nap"></label>
+  <label>Activities<textarea name="activities" rows="2"></textarea></label>
+  <label>Incidents<textarea name="incidents" rows="2"></textarea></label>
+  <label>Notes<textarea name="notes" rows="2"></textarea></label>
+</div><button type="submit">Save daily record</button><button type="button" class="secondary" id="daily-clear">Clear</button></form></section>
+<section id="history" class="panel"><h2>Daily Care History</h2><div class="fields">
+  <label>Child<select id="history-child" class="child-options" data-all="true"></select></label>
+  <label>Date (optional)<input type="date" id="history-date"></label>
+</div><button id="history-refresh">Search</button><div id="history-list"></div></section>
+<section id="staff" class="panel"><h2>Staff</h2><form id="staff-form"><input type="hidden" name="id"><div class="fields">
+  <label>Name *<input name="name" required></label><label>Role<input name="role"></label>
+  <label>Phone<input name="phone"></label><label>Email<input name="email" type="email"></label>
+</div><button type="submit">Save staff</button><button type="button" class="secondary" id="staff-clear">Clear</button></form><div id="staff-list"></div></section>
+<section id="payments" class="panel"><h2>Payments</h2><form id="payment-form"><div class="fields">
+  <label>Child *<select name="childId" class="child-options" required></select></label>
+  <label>Date *<input name="date" type="date" required></label>
+  <label>Amount ($) *<input name="amount" type="number" min="0.01" step="0.01" required></label>
+  <label>Method<select name="method"><option>Cash</option><option>Card</option><option>Transfer</option><option>Other</option></select></label>
+  <label>Notes<input name="notes"></label>
+</div><button type="submit">Record payment</button></form><div id="payment-list"></div></section>
+<section id="backup" class="panel"><h2>Backup & API</h2><p>Export your local test data as JSON. This demo has no authentication; do not enter real children's personal information.</p>
+<a class="button" href="/api/export" download="daycare-backup.json">Export JSON backup</a>
+<p>Health check: <a href="/api/health" target="_blank" rel="noopener">/api/health</a></p>
+<p>Children API: <a href="/api/children" target="_blank" rel="noopener">/api/children</a></p></section>
+<footer>Learning demonstration only · Not a production childcare records system</footer>
+</div></body></html>
