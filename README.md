@@ -1,5 +1,17 @@
 # DaycareAPI2026 — Complete local learning demo
 
+## Live Demo
+
+The Daycare Management System is deployed on Microsoft Azure.
+
+Live website:
+https://daycare-samah-2026-a3b8bpdwd9cfgdd0.canadacentral-01.azurewebsites.net
+
+GitHub repository:
+https://github.com/samahalmsadde/DaycareManagementSystem
+
+This project is an educational demonstration and uses fictional data only.
+
 An ASP.NET Core .NET 10 backend and browser interface in **one Visual Studio project**. No extra NuGet packages are needed. **Use fictional data only.**
 
 ## Run in Visual Studio 2026
