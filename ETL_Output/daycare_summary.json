@@ -1,0 +1,13 @@
+{
+  "Pipeline": "Daycare ETL",
+  "Status": "Success",
+  "ExecutedAt": "2026-11-03T02:09:29.7553721Z",
+  "Source": "App_Data/daycare.json",
+  "TotalChildren": 1,
+  "ByGender": {
+    "Male": 1
+  },
+  "ByGroup": {
+    "Group C": 1
+  }
+}

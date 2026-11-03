@@ -146,4 +146,36 @@ app.MapGet("/api/export", (DataStore store) =>
     Results.Json(store.Read(db => db)));
 
 app.MapFallbackToFile("index.html");
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapGet("/api/etl/run", async () =>
+    {
+        try
+        {
+            string output =
+                await DaycareAPI2026.ETL.DaycareETLPipeline
+                    .RunAsync(app.Environment.ContentRootPath);
+
+            string result = await File.ReadAllTextAsync(output);
+
+            return Results.Content(result, "application/json");
+        }
+        catch (FileNotFoundException)
+        {
+            return Results.NotFound(new
+            {
+                error = "ETL source file not found."
+            });
+        }
+        catch (InvalidDataException ex)
+        {
+            return Results.BadRequest(new
+            {
+                error = ex.Message
+            });
+        }
+    });
+}
+
 app.Run();
